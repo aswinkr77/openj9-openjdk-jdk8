@@ -323,7 +323,7 @@ AC_DEFUN([BASIC_SETUP_TOOL],
         # A command without a complete path is provided, search $PATH.
         AC_MSG_NOTICE([Will search for user supplied tool $1=$tool_basename])
         AC_PATH_PROG($1, $tool_basename)
-        PRINT_TOOL_VERSION($tool_basename)
+        PRINT_TOOL_VERSION([$tool_basename])
         if test "x[$]$1" = x; then
           AC_MSG_ERROR([User supplied tool $tool_basename could not be found])
         fi
@@ -347,7 +347,7 @@ AC_DEFUN([BASIC_SETUP_TOOL],
 AC_DEFUN([BASIC_PATH_PROGS],
 [
   BASIC_SETUP_TOOL($1, [AC_PATH_PROGS($1, $2)])
-  PRINT_TOOL_VERSION($2)
+  PRINT_TOOL_VERSION([$2])
 ])
 
 # Call BASIC_SETUP_TOOL with AC_CHECK_TOOLS to locate the tool
@@ -770,12 +770,12 @@ AC_DEFUN([BASIC_CHECK_GNU_MAKE],
   else
     # Try our hardest to locate a correct version of GNU make
     AC_PATH_PROGS(CHECK_GMAKE, gmake)
-    PRINT_TOOL_VERSION(gmake)
+    PRINT_TOOL_VERSION([gmake])
     BASIC_CHECK_MAKE_VERSION("$CHECK_GMAKE", [gmake in PATH])
 
     if test "x$FOUND_MAKE" = x; then
       AC_PATH_PROGS(CHECK_MAKE, make)
-      PRINT_TOOL_VERSION(make)
+      PRINT_TOOL_VERSION([make])
       BASIC_CHECK_MAKE_VERSION("$CHECK_MAKE", [make in PATH])
     fi
 
@@ -785,11 +785,11 @@ AC_DEFUN([BASIC_CHECK_GNU_MAKE],
         OLD_PATH=$PATH
         PATH=$TOOLCHAIN_PATH:$PATH
         AC_PATH_PROGS(CHECK_TOOLSDIR_GMAKE, gmake)
-        PRINT_TOOL_VERSION(gmake)
+        PRINT_TOOL_VERSION([gmake])
         BASIC_CHECK_MAKE_VERSION("$CHECK_TOOLSDIR_GMAKE", [gmake in tools-dir])
         if test "x$FOUND_MAKE" = x; then
           AC_PATH_PROGS(CHECK_TOOLSDIR_MAKE, make)
-          PRINT_TOOL_VERSION(make)
+          PRINT_TOOL_VERSION([make])
           BASIC_CHECK_MAKE_VERSION("$CHECK_TOOLSDIR_MAKE", [make in tools-dir])
         fi
         PATH=$OLD_PATH
