@@ -49,7 +49,7 @@ AC_DEFUN([ADD_JVM_ARG_IF_OK],
 
 AC_DEFUN([PRINT_TOOL_VERSION], [
   if test "x$$1" != x; then
-    TOOL_VERSION=`$$1 --version 2>/dev/null | head -n 1`
+    TOOL_VERSION=`$$1 --version 2>&1`
     if test "x$TOOL_VERSION" != x; then
       AC_MSG_NOTICE([$1 version: $TOOL_VERSION])
     else
